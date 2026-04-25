@@ -1,119 +1,325 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Calentamiento Global</title>
+  <meta name="monetag" content="3ae4d7844d18567849b651ae6e4a0813">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Mi Sitio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=DM+Sans:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet"/>
   <style>
-    *{margin:0;padding:0;box-sizing:border-box}
-    body{font-family:Arial,sans-serif;background:#f5f5f5;color:#222;line-height:1.6}
-    header{background:#1a472a;color:#fff;text-align:center;padding:1.5rem 1rem}
-    header h1{font-size:1.8rem}
-    header p{font-size:.95rem;opacity:.9;margin-top:.3rem}
-    nav{background:#2e7d32;text-align:center;padding:.5rem}
-    nav a{color:#fff;text-decoration:none;margin:0 .6rem;font-size:.9rem}
-    nav a:hover{text-decoration:underline}
-    .container{max-width:800px;margin:0 auto;padding:.8rem}
-    .ad{margin:1rem 0;text-align:center;min-height:60px}
-    article{background:#fff;border-radius:6px;padding:1.2rem;margin:.8rem 0;box-shadow:0 1px 2px rgba(0,0,0,.06)}
-    article h2{color:#1a472a;margin-bottom:.6rem;font-size:1.3rem}
-    article p{margin-bottom:.6rem;font-size:.95rem}
-    article ul{margin:.4rem 0 .4rem 1.3rem;font-size:.95rem}
-    article li{margin-bottom:.2rem}
-    .stat{background:#e8f5e9;border-left:3px solid #2e7d32;padding:.6rem .8rem;margin:.4rem 0;font-size:.9rem}
-    .stat strong{color:#2e7d32}
-    footer{background:#1a472a;color:#fff;text-align:center;padding:.8rem;font-size:.75rem;margin-top:1.5rem}
-    @media(max-width:600px){header h1{font-size:1.3rem}nav a{display:block;margin:.2rem 0}.container{padding:.4rem}}
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0d0d0f;
+      --surface: #16161a;
+      --border: #2a2a30;
+      --accent: #e8ff47;
+      --accent2: #ff6b35;
+      --text: #f0f0f0;
+      --muted: #6b6b78;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'DM Sans', sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    header {
+      padding: 1.2rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      background: rgba(13,13,15,0.88);
+      backdrop-filter: blur(12px);
+      z-index: 100;
+    }
+
+    .logo {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 1.4rem;
+      letter-spacing: -0.03em;
+    }
+    .logo span { color: var(--accent); }
+
+    nav a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.9rem;
+      margin-left: 1.8rem;
+      transition: color .2s;
+    }
+    nav a:hover { color: var(--text); }
+
+    .ad-bar {
+      width: 100%;
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 0.6rem 1rem;
+      min-height: 70px;
+      overflow: hidden;
+      text-align: center;
+    }
+
+    .ad-bar-bottom {
+      width: 100%;
+      background: var(--surface);
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 0.6rem 1rem;
+      min-height: 80px;
+      overflow: hidden;
+      text-align: center;
+    }
+
+    .page-wrap {
+      display: grid;
+      grid-template-columns: 1fr 300px;
+      gap: 0;
+      flex: 1;
+      max-width: 1280px;
+      margin: 0 auto;
+      width: 100%;
+      padding: 2.5rem 2rem;
+    }
+
+    main { padding-right: 2.5rem; }
+
+    .hero { margin-bottom: 3rem; }
+    .hero-tag {
+      display: inline-block;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      border: 1px solid var(--accent);
+      padding: 0.25rem 0.7rem;
+      border-radius: 2px;
+      margin-bottom: 1.2rem;
+    }
+    .hero h1 {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(2rem, 5vw, 3.8rem);
+      font-weight: 800;
+      line-height: 1.05;
+      letter-spacing: -0.04em;
+      margin-bottom: 1rem;
+    }
+    .hero h1 em { font-style: italic; color: var(--accent2); }
+    .hero p { color: var(--muted); max-width: 52ch; line-height: 1.7; font-size: 1rem; }
+
+    .articles { display: grid; gap: 1.2rem; }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 1.4rem 1.6rem;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 1rem;
+      align-items: start;
+      transition: border-color .2s, transform .2s;
+      cursor: pointer;
+    }
+    .card:hover { border-color: var(--accent); transform: translateX(4px); }
+    .card-cat {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent2);
+      margin-bottom: 0.4rem;
+    }
+    .card h3 {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.05rem;
+      font-weight: 700;
+      margin-bottom: 0.4rem;
+      line-height: 1.3;
+    }
+    .card p { font-size: 0.85rem; color: var(--muted); line-height: 1.6; }
+    .card-num {
+      font-family: 'Syne', sans-serif;
+      font-size: 2rem;
+      font-weight: 800;
+      color: var(--border);
+      line-height: 1;
+    }
+
+    aside {
+      border-left: 1px solid var(--border);
+      padding-left: 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+
+    .sidebar-section h4 {
+      font-family: 'Syne', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 1rem;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 0.5rem;
+    }
+
+    .ad-box {
+      background: var(--surface);
+      border: 1px dashed var(--border);
+      border-radius: 4px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 90px;
+      overflow: hidden;
+      padding: 0.5rem;
+    }
+
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 1.2rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+    footer a { color: var(--muted); text-decoration: none; }
+    footer a:hover { color: var(--accent); }
+
+    @media (max-width: 768px) {
+      .page-wrap { grid-template-columns: 1fr; padding: 1.5rem 1rem; }
+      main { padding-right: 0; }
+      aside { border-left: none; border-top: 1px solid var(--border); padding-left: 0; padding-top: 2rem; }
+    }
   </style>
 </head>
 <body>
 
-<header>
-  <h1>🌍 Calentamiento Global</h1>
-  <p>Información clave sobre el cambio climático</p>
-</header>
-
-<nav>
-  <a href="#que-es">¿Qué es?</a>
-  <a href="#causas">Causas</a>
-  <a href="#consecuencias">Consecuencias</a>
-  <a href="#soluciones">Soluciones</a>
-</nav>
-
-<div class="container">
-
-  <!-- AD: Script global 1 -->
-  <script src="https://pl29244966.profitablecpmratenetwork.com/0f/14/7a/0f147ac5b9ec7e2845268557169e87c5.js"></script>
-
-  <!-- AD: Banner superior con contenedor -->
-  <div class="ad">
-    <div id="container-9a9fe4209a433ee19589fb22fb7e5c58"></div>
-    <script async="async" data-cfasync="false" src="https://pl29244967.profitablecpmratenetwork.com/9a9fe4209a433ee19589fb22fb7e5c58/invoke.js"></script>
+  <!-- AD 1: Social Bar / Native Banner superior -->
+  <div class="ad-bar">
+    <script src="https://pl29244966.profitablecpmratenetwork.com/0f/14/7a/0f147ac5b9ec7e2845268557169e87c5.js"></script>
   </div>
 
-  <article id="que-es">
-    <h2>¿Qué es el calentamiento global?</h2>
-    <p>Es el aumento gradual de la temperatura media del planeta por la acumulación de gases de efecto invernadero en la atmósfera.</p>
-    <div class="stat"><strong>Dato:</strong> +1.1 °C desde la era preindustrial.</div>
-  </article>
+  <header>
+    <div class="logo">news<span>.</span></div>
+    <nav>
+      <a href="#">Inicio</a>
+      <a href="#">Tecnología</a>
+      <a href="#">Cultura</a>
+      <a href="#">Contacto</a>
+    </nav>
+  </header>
 
-  <!-- AD: Banner 468x60 -->
-  <div class="ad">
-    <script>
-      atOptions = {'key':'2e11f52b8119fc4051ff7b97197174c6','format':'iframe','height':60,'width':468,'params':{}};
-    </script>
-    <script src="https://www.highperformanceformat.com/2e11f52b8119fc4051ff7b97197174c6/invoke.js"></script>
+  <div class="page-wrap">
+    <main>
+      <section class="hero">
+        <span class="hero-tag">Destacado</span>
+        <h1>Las noticias que <em>importan</em> hoy</h1>
+        <p>Contenido curado, análisis profundo y perspectivas frescas sobre los temas que definen nuestro tiempo.</p>
+      </section>
+
+      <div class="articles">
+        <div class="card">
+          <div>
+            <div class="card-cat">Tecnología</div>
+            <h3>El futuro de la inteligencia artificial en 2026</h3>
+            <p>Cómo los modelos de lenguaje están redefiniendo industrias enteras y qué esperar en los próximos meses.</p>
+          </div>
+          <div class="card-num">01</div>
+        </div>
+        <div class="card">
+          <div>
+            <div class="card-cat">Economía</div>
+            <h3>Mercados globales: tendencias y oportunidades</h3>
+            <p>Un vistazo a los movimientos de capital más relevantes y las señales que los inversores no deben ignorar.</p>
+          </div>
+          <div class="card-num">02</div>
+        </div>
+        <div class="card">
+          <div>
+            <div class="card-cat">Cultura</div>
+            <h3>El renacimiento del diseño editorial en la web</h3>
+            <p>Tipografía expresiva, layouts atrevidos y color como declaración.</p>
+          </div>
+          <div class="card-num">03</div>
+        </div>
+      </div>
+    </main>
+
+    <aside>
+      <!-- AD 2: Banner con div contenedor — div ANTES del script -->
+      <div class="sidebar-section">
+        <h4>Publicidad</h4>
+        <div class="ad-box">
+          <div id="container-9a9fe4209a433ee19589fb22fb7e5c58"></div>
+          <script async="async" data-cfasync="false" src="https://pl29244967.profitablecpmratenetwork.com/9a9fe4209a433ee19589fb22fb7e5c58/invoke.js"></script>
+        </div>
+      </div>
+
+      <!-- AD 3: Banner iframe 468x60 — div antes del script, escalado -->
+      <div class="sidebar-section">
+        <h4>Patrocinado</h4>
+        <div class="ad-box" style="min-height:40px;">
+          <div style="transform:scale(0.58); transform-origin:center top; width:468px; height:60px;">
+            <script>
+              atOptions = {
+                'key' : '2e11f52b8119fc4051ff7b97197174c6',
+                'format' : 'iframe',
+                'height' : 60,
+                'width' : 468,
+                'params' : {}
+              };
+            </script>
+            <script src="https://www.highperformanceformat.com/2e11f52b8119fc4051ff7b97197174c6/invoke.js"></script>
+          </div>
+        </div>
+      </div>
+
+      <!-- AD 4: Popunder — carga silenciosa al final del sidebar -->
+      <script src="https://pl29244969.profitablecpmratenetwork.com/a9/24/b2/a924b282e5e757932685c4adf1c34f42.js"></script>
+    </aside>
   </div>
 
-  <article id="causas">
-    <h2>Principales causas</h2>
-    <ul>
-      <li>Quema de combustibles fósiles</li>
-      <li>Deforestación masiva</li>
-      <li>Agricultura y ganadería intensiva</li>
-      <li>Emisiones industriales</li>
-    </ul>
-    <div class="stat"><strong>Dato:</strong> CO₂ > 420 ppm (máximo en 800.000 años).</div>
-  </article>
+  <!-- AD 5: Direct Link Adsterra cargado como script -->
+  <div class="ad-bar-bottom">
+    <script src="https://www.profitablecpmratenetwork.com/yf017njkp6?key=f05c80d271125e2719a0cac14e6fd99d" async></script>
+  </div>
 
-  <article id="consecuencias">
-    <h2>Consecuencias</h2>
-    <ul>
-      <li>Deshielo de glaciares y polos</li>
-      <li>Aumento del nivel del mar</li>
-      <li>Clima extremo más frecuente</li>
-      <li>Pérdida de biodiversidad</li>
-    </ul>
-  </article>
-
-  <!-- AD: Script global 2 -->
-  <script src="https://pl29244969.profitablecpmratenetwork.com/a9/24/b2/a924b282e5e757932685c4adf1c34f42.js"></script>
-
-  <article id="soluciones">
-    <h2>¿Qué podemos hacer?</h2>
-    <ul>
-      <li>Usar energías renovables</li>
-      <li>Reducir, reusar, reciclar</li>
-      <li>Transporte sostenible</li>
-      <li>Apoyar políticas climáticas</li>
-      <li>Plantar árboles 🌱</li>
-    </ul>
-  </article>
-
-  <!-- AD: Enlace de afiliado (fallback o banner adicional) -->
-  <div class="ad">
-    <a href="https://www.profitablecpmratenetwork.com/yf017njkp6?key=f05c80d271125e2719a0cac14e6fd99d" 
-       target="_blank" rel="nofollow sponsored"
-       style="display:inline-block;background:#2e7d32;color:#fff;padding:.8rem 1.5rem;text-decoration:none;border-radius:4px;font-size:.9rem">
-      📢 Más información
+  <!-- AD 6: Smartlink — href directo, Adsterra elige el mejor anuncio -->
+  <div style="width:100%; background:#111114; border-top:1px solid #2a2a30; display:flex; justify-content:center; align-items:center; padding:0.8rem 1rem; text-align:center;">
+    <a href="https://www.profitablecpmratenetwork.com/q3408rp3p?key=13460b2988d38b45cf4d23cd8d7159bf"
+       target="_blank" rel="noopener"
+       style="font-family:'DM Sans',sans-serif; font-size:0.85rem; color:#6b6b78; text-decoration:none; border:1px dashed #2a2a30; padding:0.5rem 1.4rem; border-radius:4px;">
+      ▶ Oferta especial para ti
     </a>
   </div>
 
-</div>
-
-<footer>
-  <p>© 2025 Calentamiento Global • 🌍 Comparte y actúa</p>
-</footer>
+  <footer>
+    <span>© 2026 news. Todos los derechos reservados.</span>
+    <div>
+      <a href="#">Privacidad</a> &nbsp;·&nbsp;
+      <a href="#">Términos</a> &nbsp;·&nbsp;
+      <a href="#">Anúnciate</a>
+    </div>
+  </footer>
 
 </body>
 </html>
